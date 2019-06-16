@@ -24,7 +24,7 @@ function checkQueryStr() {
     let newLng = '';
 
     const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('myParam');
+    const myParam = urlParams.get('lat');
 
     console.log(myParam);
 
