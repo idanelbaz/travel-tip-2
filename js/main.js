@@ -24,7 +24,7 @@ function checkQueryStr() {
     let newLng = '';
 
     var params = new URLSearchParams(urlStr.search);
-    console.log(myParam);
+    console.log(params);
 
     handleUserLoc();
 
