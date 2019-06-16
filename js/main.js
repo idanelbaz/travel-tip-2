@@ -10,25 +10,28 @@ document.querySelector('.search').addEventListener('keypress', checkIfEnter);
 
 
 document.body.onload = () => {
-    checkQueryStr();
-
-
-}
-
-function checkQueryStr() {
-    const urlStr = window.location.href;
-    console.log(urlStr)
-    let latLoc = urlStr.indexOf('?lat=');
-    let lngLoc = urlStr.indexOf('&lng=');
-    let newLet = '';
-    let newLng = '';
-
-    var params = new URLSearchParams(urlStr.search);
-    console.log(params);
-
     handleUserLoc();
+    var lat = checkQueryStr('lat');
+    var lng = checkQueryStr('lng');
+    console.log(lat, lng)
+
 
 }
+
+function checkQueryStr(name, url) {
+
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+
+
+
 
 
 function handleUserLoc() {
